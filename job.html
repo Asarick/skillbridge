@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillBridge - Jobs</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4a90e2;
+            --secondary-color: #f39c12;
+            --background-color: #f4f4f4;
+            --text-color: #333;
+            --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: var(--background-color);
+        }
+
+        .sidebar {
+            height: 100vh;
+            background-color: #343a40;
+            color: #fff;
+            padding-top: 20px;
+        }
+
+        .sidebar a {
+            color: #fff;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: #495057;
+        }
+
+        .main-content {
+            padding: 20px;
+        }
+
+        .card {
+            margin-bottom: 20px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .jobs-hero {
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .jobs-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .jobs-hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            background-color: #3a7cd5;
+            border-color: #3a7cd5;
+        }
+
+        .sidebar {
+            width: 60px;
+            transition: width 0.3s ease;
+            overflow: hidden;
+        }
+
+        .sidebar:hover {
+            width: 250px;
+        }
+
+        .nav-link {
+            white-space: nowrap;
+        }
+
+        .nav-text {
+            display: none;
+            margin-left: 10px;
+        }
+
+        .sidebar:hover .nav-text {
+            display: inline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <<nav class="col-md-2 d-none d-md-block sidebar" id="sidebar">
+                <div class="position-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="home.html">
+                                <i class="fas fa-home"></i> <span class="nav-text">Home</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="course.html">
+                                <i class="fas fa-graduation-cap"></i> <span class="nav-text">Courses</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">
+                                <i class="fas fa-briefcase"></i> <span class="nav-text">Jobs</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" id="logoutBtn">
+                                <i class="fas fa-sign-out-alt"></i> <span class="nav-text">Logout</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                </nav>
+
+                <main class="col-md-10 ms-sm-auto px-md-4 main-content">
+                    <div class="jobs-hero">
+                        <h1>Find Your Next Opportunity</h1>
+                        <p>Browse and apply for jobs that match your skills</p>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-md-3 mb-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Job Categories</h5>
+                                    <div class="list-group" id="job-categories">>
+                                        <a href="#" class="list-group-item list-group-item-action active"
+                                            data-category="all">All Jobs</a>
+                                        <a href="#" class="list-group-item list-group-item-action"
+                                            data-category="ui-ux">UI/UX Design</a>
+                                        <a href="#" class="list-group-item list-group-item-action"
+                                            data-category="web-dev">Web
+                                            Development</a>
+                                        <a href="#" class="list-group-item list-group-item-action"
+                                            data-category="data-analysis">Data
+                                            Analysis</a>
+                                        <a href="#" class="list-group-item list-group-item-action"
+                                            data-category="content-writing">Content
+                                            Writing</a>
+                                        <a href="#" class="list-group-item list-group-item-action"
+                                            data-category="digital-marketing">Digital
+                                            Marketing</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Job List</h5>
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control" placeholder="Search jobs..."
+                                            id="job-search">
+                                        <button class="btn btn-primary" type="button" id="search-btn">Search</button>
+                                    </div>
+                                    <div id="job-list" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                                        <!-- Job cards will be dynamically added here -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+        </div>
+    </div>
+
+    <!-- Job Application Modal -->
+    <div class="modal fade" id="jobApplicationModal" tabindex="-1" aria-labelledby="jobApplicationModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="jobApplicationModalLabel">Apply for Job</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="jobApplicationForm">
+                        <div class="mb-3">
+                            <label for="applicantName" class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="applicantName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="applicantEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="applicantEmail" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="applicantResume" class="form-label">Resume/CV</label>
+                            <input type="file" class="form-control" id="applicantResume" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="coverLetter" class="form-label">Cover Letter</label>
+                            <textarea class="form-control" id="coverLetter" rows="4" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="portfolioLink" class="form-label">Portfolio Link (if applicable)</label>
+                            <input type="url" class="form-control" id="portfolioLink">
+                        </div>
+                        <div class="mb-3">
+                            <label for="additionalInfo" class="form-label">Additional Information</label>
+                            <textarea class="form-control" id="additionalInfo" rows="3"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="submitApplication">Submit Application</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-light py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>SkillBridge</h5>
+                    <p>Empowering individuals through skills and opportunities.</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="home.html" class="text-light">Home</a></li>
+                        <li><a href="courses.html" class="text-light">Courses</a></li>
+                        <li><a href="#" class="text-light">Jobs</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Connect with Us</h5>
+                    <div class="social-icons">
+                        <a href="#" class="text-light me-2"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-light me-2"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-light me-2"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-light"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="mt-4">
+            <div class="text-center">
+                <p>&copy; 2024 SkillBridge. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+            // Add this at the beginning of your DOMContentLoaded event listener
+            window.addEventListener('message', function (event) {
+                if (event.data.type === 'newJob') {
+                    jobs.push(event.data.job);
+                    displayJobs(jobs);
+                    showNotification('New job posted: ' + event.data.job.title);
+                }
+            });
+
+            // Add this function to show notifications
+            function showNotification(message, type = 'success') {
+                const notification = document.createElement('div');
+                notification.className = `alert alert-${type} alert-dismissible fade show`;
+                notification.setAttribute('role', 'alert');
+                notification.innerHTML = `
+        ${message}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    `;
+                document.body.insertAdjacentElement('afterbegin', notification);
+                setTimeout(() => {
+                    notification.remove();
+                }, 5000);
+            }
+            const jobList = document.getElementById('job-list');
+            const categoryLinks = document.querySelectorAll('#job-categories a');
+            const searchInput = document.getElementById('job-search');
+            const searchBtn = document.getElementById('search-btn');
+            const jobApplicationModal = new bootstrap.Modal(document.getElementById('jobApplicationModal'));
+            const submitApplicationBtn = document.getElementById('submitApplication');
+
+            // Sample job data (in a real application, this would come from a database)
+            const jobs = [
+                {
+                    title: "UI/UX Designer",
+                    category: "ui-ux",
+                    company: "TechCorp",
+                    location: "Remote",
+                    salary: "$60,000 - $80,000",
+                    description: "We're seeking a talented UI/UX Designer to create intuitive and visually appealing interfaces for our web and mobile applications.",
+                    requirements: ["3+ years of UI/UX design experience", "Proficiency in Figma or Adobe XD", "Strong portfolio showcasing user-centered design"],
+                    responsibilities: ["Create wireframes, prototypes, and high-fidelity mockups", "Conduct user research and usability testing", "Collaborate with developers to ensure design implementation"],
+                    deadline: "2024-08-15"
+                },
+                {
+                    title: "Frontend Developer",
+                    category: "web-dev",
+                    company: "WebSolutions Inc.",
+                    location: "New York, NY",
+                    salary: "$70,000 - $90,000",
+                    description: "Join our team as a Frontend Developer and build responsive, performant web applications using modern JavaScript frameworks.",
+                    requirements: ["2+ years of experience with React or Vue.js", "Strong HTML, CSS, and JavaScript skills", "Experience with version control (Git)"],
+                    responsibilities: ["Develop and maintain frontend components", "Optimize applications for maximum speed and scalability", "Collaborate with backend developers and designers"],
+                    deadline: "2024-07-30"
+                },
+                {
+                    title: "Data Analyst",
+                    category: "data-analysis",
+                    company: "DataInsights Co.",
+                    location: "Chicago, IL",
+                    salary: "$65,000 - $85,000",
+                    description: "We're looking for a Data Analyst to help us derive valuable insights from our vast datasets and drive data-informed decision making.",
+                    requirements: ["Bachelor's degree in Statistics, Mathematics, or related field", "Proficiency in SQL and Python or R", "Experience with data visualization tools (e.g., Tableau, Power BI)"],
+                    responsibilities: ["Collect, process, and analyze large datasets", "Create reports and dashboards to communicate findings", "Collaborate with cross-functional teams to identify business opportunities"],
+                    deadline: "2024-08-31"
+                },
+                {
+                    title: "Content Writer",
+                    category: "content-writing",
+                    company: "ContentKing",
+                    location: "Remote",
+                    salary: "$45,000 - $65,000",
+                    description: "Join our content team and create engaging, SEO-optimized content for various industries and platforms.",
+                    requirements: ["Excellent writing and editing skills", "Understanding of SEO best practices", "Ability to research and write about diverse topics"],
+                    responsibilities: ["Produce high-quality blog posts, articles, and whitepapers", "Optimize content for search engines and user engagement", "Collaborate with the marketing team to align content with business goals"],
+                    deadline: "2024-07-20"
+                },
+                {
+                    title: "Digital Marketing Specialist",
+                    category: "digital-marketing",
+                    company: "GrowthHackers",
+                    location: "San Francisco, CA",
+                    salary: "$55,000 - $75,000",
+                    description: "We're seeking a Digital Marketing Specialist to develop and execute marketing strategies across various digital channels.",
+                    requirements: ["2+ years of experience in digital marketing", "Proficiency in Google Analytics and Google Ads", "Experience with social media marketing and email campaigns"],
+                    responsibilities: ["Plan and execute digital marketing campaigns", "Analyze campaign performance and optimize for ROI", "Manage social media accounts and create engaging content"],
+                    deadline: "2024-08-10"
+                },
+                {
+                    title: "Backend Developer",
+                    category: "web-dev",
+                    company: "ServerStack Solutions",
+                    location: "Austin, TX",
+                    salary: "$80,000 - $110,000",
+                    description: "We're seeking an experienced Backend Developer to build scalable and efficient server-side applications.",
+                    requirements: ["4+ years of experience in backend development", "Proficiency in Python, Java, or Node.js", "Experience with RESTful APIs and microservices architecture"],
+                    responsibilities: ["Design and implement server-side logic", "Optimize application performance and scalability", "Collaborate with frontend developers and DevOps teams"],
+                    deadline: "2024-09-15"
+                },
+                {
+                    title: "Machine Learning Engineer",
+                    category: "data-analysis",
+                    company: "AI Innovations Ltd.",
+                    location: "Boston, MA",
+                    salary: "$90,000 - $130,000",
+                    description: "Join our AI team to develop and deploy machine learning models for various applications.",
+                    requirements: ["MS or PhD in Computer Science or related field", "Strong background in machine learning algorithms", "Experience with TensorFlow or PyTorch"],
+                    responsibilities: ["Develop and implement machine learning models", "Optimize model performance and accuracy", "Collaborate with data scientists and software engineers"],
+                    deadline: "2024-08-30"
+                },
+                {
+                    title: "Social Media Manager",
+                    category: "digital-marketing",
+                    company: "BrandBoost Agency",
+                    location: "Miami, FL",
+                    salary: "$50,000 - $70,000",
+                    description: "We're looking for a creative Social Media Manager to develop and execute engaging social media strategies for our clients.",
+                    requirements: ["3+ years of experience in social media management", "Proficiency in social media analytics tools", "Strong copywriting and visual design skills"],
+                    responsibilities: ["Develop and implement social media strategies", "Create and curate engaging content for various platforms", "Analyze social media metrics and report on campaign performance"],
+                    deadline: "2024-07-31"
+                },
+                {
+                    title: "UX Researcher",
+                    category: "ui-ux",
+                    company: "UserFirst Design",
+                    location: "Seattle, WA",
+                    salary: "$70,000 - $95,000",
+                    description: "We're seeking a UX Researcher to conduct user research and provide insights to inform our design decisions.",
+                    requirements: ["3+ years of experience in UX research", "Proficiency in various research methodologies", "Strong analytical and communication skills"],
+                    responsibilities: ["Plan and conduct user research studies", "Analyze research data and present actionable insights", "Collaborate with designers and product managers to implement research findings"],
+                    deadline: "2024-08-20"
+                },
+                {
+                    title: "Technical Writer",
+                    category: "content-writing",
+                    company: "DocuTech Solutions",
+                    location: "Remote",
+                    salary: "$60,000 - $80,000",
+                    description: "Join our documentation team to create clear and concise technical documentation for software products.",
+                    requirements: ["3+ years of experience in technical writing", "Strong understanding of software development processes", "Familiarity with documentation tools (e.g., MadCap Flare, Confluence)"],
+                    responsibilities: ["Create user manuals, API documentation, and release notes", "Collaborate with developers to understand product features", "Maintain and update existing documentation"],
+                    deadline: "2024-09-05"
+                }
+            ];
+
+            function displayJobs(jobsToShow) {
+                jobList.innerHTML = '';
+                jobsToShow.forEach(job => {
+                    const jobCard = `
+                <div class="col">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">${job.title}</h5>
+                            <p class="card-text job-company">${job.company}</p>
+                            <p class="card-text job-location"><i class="fas fa-map-marker-alt"></i> ${job.location}</p>
+                            <p class="card-text job-salary"><i class="fas fa-dollar-sign"></i> ${job.salary}</p>
+                            <p class="card-text">${job.description}</p>
+                            <h6>Requirements:</h6>
+                            <ul>
+                                ${job.requirements.map(req => `<li>${req}</li>`).join('')}
+                            </ul>
+                            <h6>Responsibilities:</h6>
+                            <ul>
+                                ${job.responsibilities.map(resp => `<li>${resp}</li>`).join('')}
+                            </ul>
+                            <p class="card-text"><strong>Application Deadline:</strong> ${job.deadline}</p>
+                            <button class="btn btn-primary apply-btn" data-job-title="${job.title}">Apply Now</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+                    jobList.innerHTML += jobCard;
+                });
+
+                // Add event listeners to apply buttons
+                document.querySelectorAll('.apply-btn').forEach(button => {
+                    button.addEventListener('click', function () {
+                        const jobTitle = this.getAttribute('data-job-title');
+                        document.getElementById('jobApplicationModalLabel').textContent = `Apply for ${jobTitle}`;
+                        jobApplicationModal.show();
+                    });
+                });
+            }
+
+            function filterJobs(category) {
+                if (category === 'all') {
+                    displayJobs(jobs);
+                } else {
+                    const filteredJobs = jobs.filter(job => job.category === category);
+                    displayJobs(filteredJobs);
+                }
+            }
+
+            categoryLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    categoryLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                    filterJobs(this.dataset.category);
+                });
+            });
+
+            searchBtn.addEventListener('click', function () {
+                const searchTerm = searchInput.value.toLowerCase();
+                const searchResults = jobs.filter(job =>
+                    job.title.toLowerCase().includes(searchTerm) ||
+                    job.company.toLowerCase().includes(searchTerm) ||
+                    job.description.toLowerCase().includes(searchTerm)
+                );
+                displayJobs(searchResults);
+            });
+
+            submitApplicationBtn.addEventListener('click', function () {
+                const form = document.getElementById('jobApplicationForm');
+                if (form.checkValidity()) {
+                    // In a real application, you would send this data to a server
+                    alert('Your application has been submitted successfully!');
+                    jobApplicationModal.hide();
+                    form.reset();
+                } else {
+                    form.reportValidity();
+                }
+            });
+
+            // Logout functionality
+            const logoutBtn = document.getElementById('logoutBtn');
+            logoutBtn.addEventListener('click', function (e) {
+                e.preventDefault();
+                // Here you would typically send a request to your server to log out the user
+                alert('Logout functionality will be implemented on the server side.');
+                // Redirect to login page
+                window.location.href = 'index.html';
+            });
+
+            // Initial display of all jobs
+            displayJobs(jobs);
+        });
+    </script>
+</body>
+
+</html>

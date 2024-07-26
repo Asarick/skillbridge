@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillBridge - Login/Signup</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: url('images/pexels-enginakyurt-2946979.jpg') no-repeat center center/cover;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar-brand, .nav-link {
+            color: #ffffff !important;
+        }
+
+        .hero {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .login-container {
+            max-width: 400px;
+            width: 90%;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .switch-container {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 30px;
+        }
+
+        .switch-button {
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #e9ecef;
+            border: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .switch-button.active {
+            background-color: #4CAF50;
+            color: #fff;
+        }
+
+        .form-container {
+            display: none;
+        }
+
+        .form-container.active {
+            display: block;
+        }
+
+        .btn-primary {
+            background-color: #4CAF50;
+            border-color: #4CAF50;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            z-index: 1000;
+            display: none;
+        }
+
+        .notification.success {
+            background-color: #4CAF50;
+        }
+
+        .notification.error {
+            background-color: #f44336;
+        }
+
+        @media (max-width: 576px) {
+            .login-container {
+                width: 95%;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">SkillBridge</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <h1 class="display-4">Welcome to SkillBridge</h1>
+            <p class="lead">Empowering your learning journey</p>
+        </div>
+    </header>
+
+    <div class="login-container">
+        <div class="switch-container">
+            <button class="switch-button active" data-target="login">Login</button>
+            <button class="switch-button" data-target="signup">Sign Up</button>
+        </div>
+
+        <div id="loginForm" class="form-container active">
+            <h2 class="text-center mb-4">Login</h2>
+            <form id="loginFormElement">
+                <div class="mb-3">
+                    <label for="loginEmail" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="loginEmail" required>
+                </div>
+                <div class="mb-3">
+                    <label for="loginPassword" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="loginPassword" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100 mb-3">Login</button>
+            </form>
+            <p class="text-center">Forgot password? <a href="#" id="forgotPasswordLink">Reset here</a></p>
+        </div>
+
+        <div id="signupForm" class="form-container">
+            <h2 class="text-center mb-4">Sign Up</h2>
+            <form id="signupFormElement">
+                <div class="mb-3">
+                    <label for="signupName" class="form-label">Full Name</label>
+                    <input type="text" class="form-control" id="signupName" required>
+                </div>
+                <div class="mb-3">
+                    <label for="signupEmail" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="signupEmail" required>
+                </div>
+                <div class="mb-3">
+                    <label for="signupPassword" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="signupPassword" required>
+                </div>
+                <div class="mb-3">
+                    <label for="signupConfirmPassword" class="form-label">Confirm Password</label>
+                    <input type="password" class="form-control" id="signupConfirmPassword" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Sign Up</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="notification" class="notification"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const switchButtons = document.querySelectorAll('.switch-button');
+            const formContainers = document.querySelectorAll('.form-container');
+            const notification = document.getElementById('notification');
+            const loginForm = document.getElementById('loginFormElement');
+            const signupForm = document.getElementById('signupFormElement');
+            const forgotPasswordLink = document.getElementById('forgotPasswordLink');
+
+            // Simulated user database
+            let users = JSON.parse(localStorage.getItem('users')) || [];
+
+            function showNotification(message, type) {
+                notification.textContent = message;
+                notification.className = `notification ${type}`;
+                notification.style.display = 'block';
+                setTimeout(() => {
+                    notification.style.display = 'none';
+                }, 3000);
+            }
+
+            function redirectUser(isAdmin) {
+                if (isAdmin) {
+                    window.location.href = 'admin.html';
+                } else {
+                    window.location.href = 'home.html';
+                }
+            }
+
+            switchButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    switchButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    const target = this.dataset.target;
+                    formContainers.forEach(container => {
+                        container.classList.remove('active');
+                        if (container.id === `${target}Form`) {
+                            container.classList.add('active');
+                        }
+                    });
+                });
+            });
+
+            loginForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                const email = document.getElementById('loginEmail').value;
+                const password = document.getElementById('loginPassword').value;
+
+                const user = users.find(u => u.email === email && u.password === password);
+                if (user) {
+                    showNotification('Login successful!', 'success');
+                    setTimeout(() => {
+                        redirectUser(user.isAdmin);
+                    }, 1500);
+                } else {
+                    showNotification('Invalid email or password', 'error');
+                }
+            });
+
+            signupForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                const name = document.getElementById('signupName').value;
+                const email = document.getElementById('signupEmail').value;
+                const password = document.getElementById('signupPassword').value;
+                const confirmPassword = document.getElementById('signupConfirmPassword').value;
+
+                if (password !== confirmPassword) {
+                    showNotification('Passwords do not match', 'error');
+                    return;
+                }
+
+                if (users.some(u => u.email === email)) {
+                    showNotification('Email already in use. Please log in.', 'error');
+                    document.querySelector('[data-target="login"]').click();
+                    return;
+                }
+
+                const isAdmin = email.endsWith('@skillbridge.edu');
+                const newUser = { name, email, password, isAdmin };
+                users.push(newUser);
+                localStorage.setItem('users', JSON.stringify(users));
+
+                showNotification('Account created successfully!', 'success');
+                setTimeout(() => {
+                    redirectUser(isAdmin);
+                }, 1500);
+            });
+
+            forgotPasswordLink.addEventListener('click', function (e) {
+                e.preventDefault();
+                const email = prompt('Enter your email address:');
+                if (email) {
+                    showNotification('Password reset link sent to your email', 'success');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

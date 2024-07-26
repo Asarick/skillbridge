@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillBridge - About Us</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('education.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            color: white;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #007bff;
+        }
+
+        .content-container {
+            background-color: #ffffff;
+            padding: 30px;
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            border: none;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">SkillBridge</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="landing.html">Previous</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-primary text-white" href="login.html">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container text-center">
+            <h1 class="display-4">About SkillBridge</h1>
+            <p class="lead">Empowering individuals through skills and opportunities</p>
+        </div>
+    </header>
+
+    <main class="container content-container">
+        <section class="mb-5">
+            <h2 class="text-center mb-4">Our Mission</h2>
+            <p class="lead text-center">At SkillBridge, our mission is to bridge the gap between education and employment by providing accessible, high-quality learning resources and connecting skilled individuals with job opportunities. We believe that everyone deserves the chance to build a successful career, regardless of their background or circumstances.</p>
+        </section>
+
+        <section class="mb-5">
+            <h2 class="text-center mb-4">Our Story</h2>
+            <p>Founded in 2024, SkillBridge was born out of a passion for education and a desire to address the growing skills gap in the job market. Our founders, a group of educators and industry professionals, recognized the need for a platform that could seamlessly integrate learning and career development.</p>
+            <p>Since our inception, we've helped thousands of learners acquire new skills and land their dream jobs. We're proud of our journey and excited about the future as we continue to expand our offerings and impact.</p>
+        </section>
+
+        <section class="mb-5">
+            <h2 class="text-center mb-4">What We Offer</h2>
+            <div class="row">
+                <div class="col-md-4 text-center mb-4">
+                    <i class="fas fa-graduation-cap feature-icon"></i>
+                    <h3>Curated Courses</h3>
+                    <p>We partner with top educational institutions and industry experts to bring you the most relevant and up-to-date courses across various fields.</p>
+                </div>
+                <div class="col-md-4 text-center mb-4">
+                    <i class="fas fa-briefcase feature-icon"></i>
+                    <h3>Job Opportunities</h3>
+                    <p>Our job board connects skilled learners with employers looking for fresh talent, creating a direct pathway from learning to employment.</p>
+                </div>
+                <div class="col-md-4 text-center mb-4">
+                    <i class="fas fa-users feature-icon"></i>
+                    <h3>Career Support</h3>
+                    <p>We provide resources for resume building, interview preparation, and career guidance to help you succeed in your job search.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-5">
+            <h2 class="text-center mb-4">Our Team</h2>
+            <p class="text-center">SkillBridge is powered by a diverse team of educators, technologists, and industry professionals who are passionate about transforming education and career development. Our team brings together expertise from various fields to create a holistic learning and job-seeking experience.</p>
+        </section>
+
+        <section id="contact" class="py-5">
+            <h2 class="text-center mb-4">Contact Us</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <form>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea class="form-control" id="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-dark text-light py-4">
+        <div class="container text-center">
+            <div class="mb-3">
+                <a href="#" class="text-light me-2"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="text-light me-2"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-light me-2"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="text-light"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p>&copy; 2024 SkillBridge. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

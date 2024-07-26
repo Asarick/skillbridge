@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillBridge - Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .sidebar {
+            height: 100vh;
+            background-color: #343a40;
+            color: #fff;
+            padding-top: 20px;
+        }
+
+        .sidebar a {
+            color: #fff;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: #495057;
+        }
+
+        .main-content {
+            padding: 20px;
+        }
+
+        .card {
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero {
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        #about,
+        #features,
+        #cta {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        #features .card {
+            border: none;
+            transition: transform 0.3s;
+        }
+
+        #features .card:hover {
+            transform: translateY(-5px);
+        }
+
+        footer {
+            background-color: #343a40;
+            color: #fff;
+            padding: 20px 0;
+        }
+
+        footer a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: #007bff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="col-md-2 d-none d-md-block sidebar">
+                <div class="position-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">
+                                <i class="fas fa-home"></i> Home
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="course.html">
+                                <i class="fas fa-graduation-cap"></i> Courses
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="job.html">
+                                <i class="fas fa-briefcase"></i> Jobs
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="profile.html">
+                                <i class="fas fa-user"></i> Profile
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="login.html" id="logoutBtn">
+                                <i class="fas fa-sign-out-alt"></i> Logout
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <main class="col-md-10 ms-sm-auto px-md-4 main-content">
+                <header class="hero">
+                    <h1>Welcome to SkillBridge</h1>
+                    <p>Empowering you with skills and opportunities</p>
+                </header>
+
+                <section id="about" class="mt-4">
+                    <h2>About SkillBridge</h2>
+                    <p>SkillBridge is your gateway to a world of opportunities. We offer a unique platform that combines
+                        skill development with job placement, helping you build a successful career.</p>
+                </section>
+
+                <section id="features" class="mt-4">
+                    <h2 class="text-center mb-4">Our Features</h2>
+                    <div class="row">
+                        <div class="col-md-4 mb-4">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <i class="fas fa-laptop-code fa-3x mb-3 text-primary"></i>
+                                    <h3 class="card-title">Online Courses</h3>
+                                    <p class="card-text">Access a wide range of courses to enhance your skills and
+                                        knowledge.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <i class="fas fa-search fa-3x mb-3 text-primary"></i>
+                                    <h3 class="card-title">Job Listings</h3>
+                                    <p class="card-text">Find and apply for jobs that match your skills and interests.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <i class="fas fa-chart-line fa-3x mb-3 text-primary"></i>
+                                    <h3 class="card-title">Skill Assessment</h3>
+                                    <p class="card-text">Evaluate your progress and identify areas for improvement.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="cta" class="mt-4 text-center">
+                    <h2>Ready to start your journey?</h2>
+                    <p>Explore courses and job opportunities now!</p>
+                    <a href="course.html" class="btn btn-primary btn-lg me-3">Browse Courses</a>
+                    <a href="job.html" class="btn btn-secondary btn-lg">Find Jobs</a>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <footer class="mt-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>SkillBridge</h5>
+                    <p>Empowering individuals through skills and opportunities.</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="course.html">Courses</a></li>
+                        <li><a href="job.html">Jobs</a></li>
+                        <li><a href="profile.html">Profile</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Connect with Us</h5>
+                    <div class="social-icons">
+                        <a href="#" class="me-2"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="me-2"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="me-2"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="mt-4">
+            <div class="text-center">
+                <p>&copy; 2024 SkillBridge. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Navbar active state
+            const sections = document.querySelectorAll("section");
+            const navLinks = document.querySelectorAll(".nav-link");
+
+            window.addEventListener("scroll", () => {
+                let current = "";
+                sections.forEach((section) => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (pageYOffset >= sectionTop - sectionHeight / 3) {
+                        current = section.getAttribute("id");
+                    }
+                });
+
+                navLinks.forEach((link) => {
+                    link.classList.remove("active");
+                    if (link.getAttribute("href").substring(1) === current) {
+                        link.classList.add("active");
+                    }
+                });
+            });
+
+            // Logout functionality
+            const logoutBtn = document.getElementById('logoutBtn');
+            logoutBtn.addEventListener('click', function (e) {
+                e.preventDefault();
+                // Here you would typically send a request to your server to log out the user
+                alert('Logout functionality will be implemented on the server side.');
+                // Redirect to login page
+                window.location.href = 'index.html';
+            });
+
+            // Welcome message (assuming user data is stored in localStorage)
+            const userName = localStorage.getItem('userName');
+            if (userName) {
+                const welcomeMessage = document.querySelector('.hero p');
+                welcomeMessage.textContent = `Welcome back, ${userName}! Ready to continue your journey?`;
+            }
+        });
+    </script>
+</body>
+
+</html>

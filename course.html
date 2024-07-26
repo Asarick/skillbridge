@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillBridge - Courses</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .sidebar {
+            height: 100vh;
+            background-color: #343a40;
+            color: #fff;
+            padding-top: 20px;
+            position: fixed;
+            left: -250px;
+            transition: 0.3s;
+            z-index: 1000;
+        }
+
+        .sidebar:hover {
+            left: 0;
+        }
+
+        .sidebar a {
+            color: #fff;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: #495057;
+        }
+
+        .main-content {
+            margin-left: 50px;
+            padding: 20px;
+            transition: 0.3s;
+        }
+
+        .card {
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        #notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .course-hero {
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .course-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .course-hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="col-md-2 sidebar">
+                <div class="position-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="home.html">
+                                <i class="fas fa-home"></i> Home
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">
+                                <i class="fas fa-graduation-cap"></i> Courses
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="job.html">
+                                <i class="fas fa-briefcase"></i> Jobs
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="login.html" id="logoutBtn">
+                                <i class="fas fa-sign-out-alt"></i> Logout
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <main class="col-md-10 ms-sm-auto px-md-4 main-content">
+                <div class="course-hero">
+                    <h1>Explore Courses</h1>
+                    <p>Enhance your skills with our curated selection of free and affordable courses</p>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-md-3 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Course Categories</h5>
+                                <div class="list-group" id="course-categories">
+                                    <a href="#" class="list-group-item list-group-item-action active"
+                                        data-category="all">All Courses</a>
+                                    <a href="#" class="list-group-item list-group-item-action"
+                                        data-category="accounting">Accounting</a>
+                                    <a href="#" class="list-group-item list-group-item-action"
+                                        data-category="programming">Programming</a>
+                                    <a href="#" class="list-group-item list-group-item-action"
+                                        data-category="marketing">Marketing</a>
+                                    <a href="#" class="list-group-item list-group-item-action"
+                                        data-category="design">Design</a>
+                                    <a href="#" class="list-group-item list-group-item-action"
+                                        data-category="business">Business</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Course List</h5>
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" placeholder="Search courses..."
+                                        id="course-search">
+                                    <button class="btn btn-primary" type="button" id="search-btn">Search</button>
+                                </div>
+                                <div id="course-list" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                                    <!-- Course cards will be dynamically added here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <div id="notification" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <strong class="me-auto">Notification</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const courseList = document.getElementById('course-list');
+            const categoryLinks = document.querySelectorAll('#course-categories a');
+            const searchInput = document.getElementById('course-search');
+            const searchBtn = document.getElementById('search-btn');
+
+            // Sample course data (in a real application, this would come from a database)
+            const courses = [
+                { title: "Introduction to Financial Accounting", category: "accounting", provider: "Coursera", rating: 4.7, url: "https://www.coursera.org/learn/wharton-accounting" },
+                { title: "Python for Everybody", category: "programming", provider: "edX", rating: 4.9, url: "https://www.edx.org/course/programming-for-everybody-getting-started-with-pyt" },
+                { title: "Digital Marketing Fundamentals", category: "marketing", provider: "Google Digital Garage", rating: 4.8, url: "https://learndigital.withgoogle.com/digitalgarage/course/digital-marketing" },
+                { title: "Graphic Design Basics", category: "design", provider: "Canva", rating: 4.6, url: "https://www.canva.com/learn/graphic-design-basics/" },
+                { title: "Entrepreneurship 101", category: "business", provider: "MIT OpenCourseWare", rating: 4.5, url: "https://ocw.mit.edu/courses/sloan-school-of-management/15-390-new-enterprises-spring-2013/" },
+                { title: "Managerial Accounting", category: "accounting", provider: "Coursera", rating: 4.6, url: "https://www.coursera.org/learn/managerial-accounting-essentials" },
+                { title: "Web Development Bootcamp", category: "programming", provider: "Udemy", rating: 4.8, url: "https://www.udemy.com/course/the-web-developer-bootcamp/" },
+                { title: "Social Media Marketing", category: "marketing", provider: "HubSpot Academy", rating: 4.7, url: "https://academy.hubspot.com/courses/social-media" },
+                { title: "UX Design Fundamentals", category: "design", provider: "Interaction Design Foundation", rating: 4.5, url: "https://www.interaction-design.org/courses/user-experience-the-beginner-s-guide" },
+                { title: "Business Strategy", category: "business", provider: "Harvard Business School Online", rating: 4.8, url: "https://online.hbs.edu/courses/core/" },
+                { title: "Machine Learning", category: "programming", provider: "Stanford Online", rating: 4.9, url: "https://www.coursera.org/learn/machine-learning" },
+                { title: "Introduction to Psychology", category: "business", provider: "Yale University", rating: 4.8, url: "https://www.coursera.org/learn/introduction-psychology" },
+                { title: "Content Marketing", category: "marketing", provider: "Copyblogger", rating: 4.6, url: "https://www.copyblogger.com/content-marketing/" },
+                { title: "Financial Markets", category: "accounting", provider: "Yale University", rating: 4.7, url: "https://www.coursera.org/learn/financial-markets-global" },
+                { title: "iOS App Development with Swift", category: "programming", provider: "Apple", rating: 4.7, url: "https://developer.apple.com/tutorials/app-dev-training" },
+                { title: "Responsive Web Design", category: "design", provider: "freeCodeCamp", rating: 4.8, url: "https://www.freecodecamp.org/learn/responsive-web-design/" },
+                { title: "Leadership and Management", category: "business", provider: "Open University", rating: 4.6, url: "https://www.open.edu/openlearn/money-business/leadership-management/content-section-0" },
+                { title: "Data Science Fundamentals", category: "programming", provider: "IBM", rating: 4.5, url: "https://www.edx.org/professional-certificate/ibm-data-science-fundamentals-with-python-and-sql" },
+                { title: "Brand Management", category: "marketing", provider: "London Business School", rating: 4.7, url: "https://www.coursera.org/learn/brand" },
+                { title: "3D Modeling and Animation", category: "design", provider: "Autodesk", rating: 4.6, url: "https://www.autodesk.com/certification/learn/maya" },
+                { title: "Blockchain Fundamentals", category: "programming", provider: "Berkeley", rating: 4.8, url: "https://www.edx.org/professional-certificate/uc-berkeleyx-blockchain-fundamentals" },
+                { title: "Project Management Professional (PMP)", category: "business", provider: "PMI", rating: 4.9, url: "https://www.pmi.org/certifications/project-management-pmp" },
+                { title: "SEO Fundamentals", category: "marketing", provider: "Moz", rating: 4.7, url: "https://academy.moz.com/series/seo-fundamentals" },
+                { title: "Corporate Finance", category: "accounting", provider: "INSEAD", rating: 4.8, url: "https://www.coursera.org/learn/corporate-finance-essentials" },
+                { title: "Game Design and Development", category: "design", provider: "Michigan State University", rating: 4.6, url: "https://www.coursera.org/specializations/game-design-and-development" }
+            ];
+
+            function displayCourses(coursesToShow) {
+                courseList.innerHTML = '';
+                coursesToShow.forEach(course => {
+                    const courseCard = `
+                <div class="col">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">${course.title}</h5>
+                            <p class="card-text course-provider">Provider: ${course.provider}</p>
+                            <p class="card-text course-rating">
+                                Rating: ${course.rating} 
+                                <span class="ms-2">
+                                    ${'★'.repeat(Math.round(course.rating))}${'☆'.repeat(5 - Math.round(course.rating))}
+                                </span>
+                            </p>
+                            <a href="${course.url}" class="btn btn-primary" target="_blank">Start Learning</a>
+                        </div>
+                    </div>
+                </div>
+            `;
+                    courseList.innerHTML += courseCard;
+                });
+            }
+
+            function filterCourses(category) {
+                if (category === 'all') {
+                    displayCourses(courses);
+                } else {
+                    const filteredCourses = courses.filter(course => course.category === category);
+                    displayCourses(filteredCourses);
+                }
+            }
+
+            categoryLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    categoryLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                    filterCourses(this.dataset.category);
+                });
+            });
+
+            searchBtn.addEventListener('click', function () {
+                const searchTerm = searchInput.value.toLowerCase();
+                const searchResults = courses.filter(course =>
+                    course.title.toLowerCase().includes(searchTerm) ||
+                    course.provider.toLowerCase().includes(searchTerm) ||
+                    course.category.toLowerCase().includes(searchTerm)
+                );
+                displayCourses(searchResults);
+            });
+
+            // Initial display of all courses
+            displayCourses(courses);
+
+            // Logout functionality
+            const logoutBtn = document.getElementById('logoutBtn');
+            logoutBtn.addEventListener('click', function (e) {
+                e.preventDefault();
+                // Here you would typically send a request to your server to log out the user
+                alert('Logout functionality will be implemented on the server side.');
+                // Redirect to login page
+                window.location.href = 'index.html';
+            });
+            function showNotification(message, type = 'success') {
+                const notification = document.getElementById('notification');
+                notification.querySelector('.toast-body').textContent = message;
+                notification.classList.remove('bg-success', 'bg-danger');
+                notification.classList.add(type === 'success' ? 'bg-success' : 'bg-danger');
+                const toast = new bootstrap.Toast(notification);
+                toast.show();
+            }
+
+            // Function to add a new course
+            function addNewCourse(course) {
+                courses.push(course);
+                displayCourses(courses);
+                showNotification(`New course added: ${course.title}`);
+            }
+
+            // Simulating receiving a new course from admin (you'd replace this with actual server communication)
+            window.addEventListener('message', function (event) {
+                if (event.data.type === 'newCourse') {
+                    addNewCourse(event.data.course);
+                }
+            });
+
+            // Initial display of courses
+            displayCourses(courses);
+        });
+    </script>
+</body>
+
+</html>

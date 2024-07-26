@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillBridge - Contact</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .sidebar {
+            height: 100vh;
+            background-color: #343a40;
+            color: #fff;
+            padding-top: 20px;
+            position: fixed;
+            left: -250px;
+            transition: 0.3s;
+            z-index: 1000;
+        }
+
+        .sidebar:hover {
+            left: 0;
+        }
+
+        .sidebar a {
+            color: #fff;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: #495057;
+        }
+
+        .main-content {
+            margin-left: 50px;
+            padding: 20px;
+            transition: 0.3s;
+        }
+
+        .card {
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        #notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .contact-hero {
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .contact-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .contact-hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        .feedback-item {
+            background-color: #f8f9fa;
+            border-left: 4px solid #4CAF50;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+        }
+
+        .feedback-item h3 {
+            margin-bottom: 10px;
+            color: #4CAF50;
+        }
+
+        .feedback-meta {
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .admin-response {
+            background-color: #e8f5e9;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin-top: 10px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="col-md-2 sidebar">
+                <div class="position-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="home.html">
+                                <i class="fas fa-home"></i> Home
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="course.html">
+                                <i class="fas fa-graduation-cap"></i> Courses
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="job.html">
+                                <i class="fas fa-briefcase"></i> Jobs
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">
+                                <i class="fas fa-envelope"></i> Contact
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="login.html" id="logoutBtn">
+                                <i class="fas fa-sign-out-alt"></i> Logout
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <main class="col-md-10 ms-sm-auto px-md-4 main-content">
+                <div class="contact-hero">
+                    <h1>Contact Us</h1>
+                    <p>We value your feedback and are here to support you on your learning journey.</p>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-md-6 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Submit Feedback</h5>
+                                <form id="feedbackForm">
+                                    <div class="mb-3">
+                                        <label for="category" class="form-label">Category:</label>
+                                        <select id="category" name="category" class="form-select" required>
+                                            <option value="">Select a category</option>
+                                            <option value="Course Feedback">Course Feedback</option>
+                                            <option value="Job Listing Feedback">Job Listing Feedback</option>
+                                            <option value="Technical Issue">Technical Issue</option>
+                                            <option value="Feature Request">Feature Request</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="message" class="form-label">Your Feedback:</label>
+                                        <textarea id="message" name="message" class="form-control" rows="5" required></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Submit Feedback</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Your Feedback History</h5>
+                                <div id="feedbackHistory">
+                                    <!-- Feedback items will be dynamically added here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <div id="notification" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <strong class="me-auto">Notification</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            let feedbacks = JSON.parse(localStorage.getItem('feedbacks')) || [];
+            const currentUser = JSON.parse(localStorage.getItem('currentUser')) || { username: 'Anonymous', email: 'anonymous@example.com' };
+
+            document.getElementById('feedbackForm').addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const category = document.getElementById('category').value;
+                const message = document.getElementById('message').value;
+
+                const feedback = {
+                    id: Date.now(),
+                    username: currentUser.username,
+                    email: currentUser.email,
+                    category: category,
+                    message: message,
+                    date: new Date().toLocaleString(),
+                    status: 'Open',
+                    adminResponse: ''
+                };
+
+                feedbacks.push(feedback);
+                localStorage.setItem('feedbacks', JSON.stringify(feedbacks));
+
+                addFeedbackToHistory(feedback);
+                showNotification('Feedback submitted successfully. We\'ll get back to you soon!');
+                this.reset();
+
+                // Notify admin (simulated)
+                window.postMessage({ type: 'newFeedback', feedback: feedback }, '*');
+            });
+
+            function addFeedbackToHistory(feedback) {
+                const feedbackHistory = document.getElementById('feedbackHistory');
+                const feedbackItem = document.createElement('div');
+                feedbackItem.className = 'feedback-item';
+                feedbackItem.innerHTML = `
+                    <h3>${feedback.category}</h3>
+                    <p>${feedback.message}</p>
+                    <div class="feedback-meta">Submitted on ${feedback.date}</div>
+                `;
+                feedbackHistory.prepend(feedbackItem);
+
+                if (feedback.adminResponse) {
+                    const adminResponse = document.createElement('div');
+                    adminResponse.className = 'admin-response';
+                    adminResponse.innerHTML = `
+                        <h4>Admin Response</h4>
+                        <p>${feedback.adminResponse}</p>
+                        <div class="feedback-meta">Responded on ${new Date().toLocaleString()}</div>
+                    `;
+                    feedbackItem.appendChild(adminResponse);
+                }
+            }
+
+            function checkForNewResponses() {
+                const storedFeedbacks = JSON.parse(localStorage.getItem('feedbacks')) || [];
+                storedFeedbacks.forEach(storedFeedback => {
+                    if (storedFeedback.username === currentUser.username) {
+                        const localFeedback = feedbacks.find(f => f.id === storedFeedback.id);
+                        if (localFeedback && storedFeedback.adminResponse && !localFeedback.adminResponse) {
+                            localFeedback.adminResponse = storedFeedback.adminResponse;
+                            addFeedbackToHistory(localFeedback);
+                            showNotification('New response from admin!');
+                        }
+                    }
+                });
+                feedbacks = storedFeedbacks.filter(f => f.username === currentUser.username);
+            }
+
+            function showNotification(message) {
+                const notification = document.getElementById('notification');
+                notification.querySelector('.toast-body').textContent = message;
+                const toast = new bootstrap.Toast(notification);
+                toast.show();
+            }
+
+            // Check for new responses every 30 seconds
+            setInterval(checkForNewResponses, 30000);
+
+            // Initial load of feedback history
+            feedbacks.filter(f => f.username === currentUser.username).forEach(addFeedbackToHistory);
+
+            // Logout functionality
+            document.getElementById('logoutBtn').addEventListener('click', function (e) {
+                e.preventDefault();
+                localStorage.removeItem('currentUser');
+                window.location.href = 'index.html';
+            });
+
+            // Simulating receiving admin responses (you'd replace this with actual server communication)
+            window.addEventListener('message', function (event) {
+                if (event.data.type === 'adminResponse') {
+                    const updatedFeedback = event.data.feedback;
+                    const localFeedback = feedbacks.find(f => f.id === updatedFeedback.id);
+                    if (localFeedback) {
+                        localFeedback.adminResponse = updatedFeedback.adminResponse;
+                        localFeedback.status = 'Responded';
+                        addFeedbackToHistory(localFeedback);
+                        showNotification('New response from admin!');
+                        localStorage.setItem('feedbacks', JSON.stringify(feedbacks));
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
